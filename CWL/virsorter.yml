@@ -1,0 +1,6 @@
+fasta_file:
+  class: File
+  path: ERR575691_host_filtered_simple.fasta
+data:
+  class: Directory
+  path: virsorter-data/
