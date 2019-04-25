@@ -1,7 +1,7 @@
 input_fasta_file:
   class: File
   path: ../ERR575691_host_filtered_simple.fasta
+output_file_virfinder:  output.tsv
 input_data_dir_virsorter:
   class: Directory
   path: /Users/kates/virsorter/virsorter-data/
-output_file_virfinder:  output.tsv

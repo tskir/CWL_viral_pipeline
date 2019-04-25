@@ -3,7 +3,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 
-label: "VirFinder"
+label: "VirFinder is a method for finding viral contigs from de novo assemblies."
 hints:
   DockerRequirement:
     dockerPull: virfinder:latest
@@ -34,16 +34,8 @@ outputs:
   output:
     type: File
     outputBinding:
-      glob: output.tsv
+      glob: $(inputs.output_file)
 
 
-$namespaces:
- edam: http://edamontology.org/
- iana: https://www.iana.org/assignments/media-types/
- s: http://schema.org/
-$schemas:
- - http://edamontology.org/EDAM_1.16.owl
- - https://schema.org/docs/schema_org_rdfa.html
-
-s:license: "https://www.apache.org/licenses/LICENSE-2.0"
-s:copyrightHolder: "EMBL - European Bioinformatics Institute"
+doc: |
+  usage: Rscript run_virfinder.Rscript <input.fasta> <output.tsv>

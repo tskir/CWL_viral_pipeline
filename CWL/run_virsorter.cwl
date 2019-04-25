@@ -27,6 +27,52 @@ inputs:
       separate: true
       prefix: "--data-dir"
 
+  dataset:
+    type: string?
+    inputBinding:
+      separate: true
+      prefix: "-d"
+  custom_phage:
+    type: string?
+    inputBinding:
+      separate: true
+      prefix: "--cp"
+  database:
+    type: int?
+    inputBinding:
+      separate: true
+      prefix: "--db"
+  working_directory:
+    type: Directory?
+    inputBinding:
+      separate: true
+      prefix: "--wdir"
+  number_of_cpu:
+    type: int?
+    inputBinding:
+      separate: true
+      prefix: "--ncpu"
+  virome_decontamination_mode:
+    type: null?
+    inputBinding:
+      separate: true
+      prefix: "--virome"
+  diamond:
+    type: null?
+    inputBinding:
+      separate: true
+      prefix: "--diamond"
+  keep_db:
+    type: null?
+    inputBinding:
+      separate: true
+      prefix: "--keep-db"
+  enrichment_statistics:
+    type: null?
+    inputBinding:
+      separate: true
+      prefix: "--no_c"
+
 
 stdout: stdout.txt
 stderr: stderr.txt
@@ -43,13 +89,36 @@ outputs:
       glob: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta
 
 
-$namespaces:
- edam: http://edamontology.org/
- iana: https://www.iana.org/assignments/media-types/
- s: http://schema.org/
-$schemas:
- - http://edamontology.org/EDAM_1.16.owl
- - https://schema.org/docs/schema_org_rdfa.html
+doc: |
+  usage: wrapper_phage_contigs_sorter_iPlant.pl --fasta sequences.fa
 
-s:license: "https://www.apache.org/licenses/LICENSE-2.0"
-s:copyrightHolder: "EMBL - European Bioinformatics Institute"
+  Required Arguments:
+
+      -f|--fna       Fasta file of contigs
+
+   Options:
+
+      -d|--dataset   Code dataset (DEFAULT "VIRSorter")
+      --cp           Custom phage sequence
+      --db           Either "1" (DEFAULT Refseqdb) or "2" (Viromedb)
+      --wdir         Working directory (DEFAULT cwd)
+      --ncpu         Number of CPUs (default: 4)
+      --virome       Add this flag to enable virome decontamination mode, for datasets
+                     mostly viral to force the use of generic metrics instead of
+                     calculated from the whole dataset. (default: off)
+      --data-dir     Path to "virsorter-data" directory (e.g. /path/to/virsorter-data)
+      --diamond      Use diamond (in "--more-sensitive" mode) instead of blastp.
+                     Diamond is much faster than blastp and may be useful for adding
+                     many custom phages, or for processing extremely large Fasta files.
+                     Unless you specify --diamond, VirSorter will use blastp.
+      --keep-db      Specifying this flag keeps the new HMM and BLAST databases created
+                     after adding custom phages. This is useful if you have custom phages
+                     that you want to be included in several different analyses and want
+                     to save the database and point VirSorter to it in subsequent runs.
+                     By default, this is off, and you should only specify this flag if
+                     you're SURE you need it.
+      --no_c         Use this option if you have issues with empty output files, i.e. 0
+                     viruses predicted by VirSorter. This make VirSorter use a perl function
+                     instead of the C script to calculate enrichment statistics. Note that
+                     VirSorter will be slower with this option.
+      --help         Show help and exit
