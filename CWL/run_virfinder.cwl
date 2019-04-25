@@ -32,9 +32,9 @@ outputs:
   stderr: stderr
 
   output:
-    type: Directory
+    type: File
     outputBinding:
-      glob: .
+      glob: output.tsv
 
 
 $namespaces:

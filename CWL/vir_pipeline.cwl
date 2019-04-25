@@ -10,20 +10,41 @@ requirements:
 inputs:
   input_fasta_file:
     type: File
+  input_data_dir_virsorter:
+    type: Directory
+  output_file_virfinder:
+    type: string
 
 outputs:
-  cat-fasta:
-    outputSource: virsorter/fastas
-    type: array
+  output_fastas:
+    outputSource: virsorter/output_fasta
+    type:
+      type: array
+      items: File
+  output_tsv:
+    outputSource: virfinder/output
+    type: File
 
 steps:
+
+  virfinder:
+    run: run_virfinder.cwl
+    in:
+      fasta_file: input_fasta_file
+      output_file: output_file_virfinder
+    out:
+      - output
+    label: "VirFinder: R package for identifying viral sequences from metagenomic data using sequence signatures"
+
   virsorter:
     run: run_virsorter.cwl
     in:
       fasta_file: input_fasta_file
+      data: input_data_dir_virsorter
     out:
-      - fastas
+      - output_fasta
     label: 'VirSorter: mining viral signal from microbial genomic data'
+
 
 $namespaces:
  edam: http://edamontology.org/
