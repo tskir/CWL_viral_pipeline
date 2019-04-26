@@ -1,0 +1,5 @@
+viral_cds: High_confidence_CDS.faa
+input_fasta:
+  class: File
+  path: ../tools/High_confidence_putative_viral_contigs.fna
+procedure: meta

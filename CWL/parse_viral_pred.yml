@@ -1,0 +1,12 @@
+assembly:
+  class: File
+  path: ../assembly.fasta
+virfinder_tsv:
+  class: File
+  path: output.tsv
+virsorter_dir:
+  class: Directory
+  path: .
+output_dir:
+  class: Directory
+  path: .
