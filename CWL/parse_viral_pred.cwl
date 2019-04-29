@@ -41,12 +41,18 @@ outputs:
   stdout: stdout
   stderr: stderr
 
-  output_fastas:
-    type:
-      type: array
-      items: File
+  output_high_conf:
+    type: File?
     outputBinding:
-      glob: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta
+      glob: High_confidence_putative_viral_contigs*
+  output_low_conf:
+    type: File?
+    outputBinding:
+      glob: Low_confidence_putative_viral_contigs*
+  output_prophages:
+    type: File?
+    outputBinding:
+      glob: Putative_prophages*
 
 
 

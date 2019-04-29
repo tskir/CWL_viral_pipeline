@@ -18,7 +18,7 @@ inputs:
       separate: true
       prefix: "-f"
   length:
-    type: int?
+    type: float?
     inputBinding:
       separate: true
       prefix: "-l"

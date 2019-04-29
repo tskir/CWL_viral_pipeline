@@ -13,7 +13,7 @@ inputs:
   output_dir_length_filter:  # optional for Length Filter
     type: Directory?
   length_length_filter:
-    type: int?
+    type: float?
   identifier_length_filter:
     type: string?
 
@@ -26,20 +26,39 @@ inputs:
   input_virsorter_dir:  # Parse files
     type: Directory
 
+  input_prodigal_procedure:  # Prodigal
+    type: string
+  input_name_output_prophages:
+    type: string
+
 outputs:
-  output_virfinder:
+  output_virfinder:  # INTERMEDIATE OUTPUT
     outputSource: virfinder/output
     type: File
-  output_virsorter:
+  output_virsorter:   # INTERMEDIATE OUTPUT
     outputSource: virsorter/output_fasta
     type:
       type: array
       items: File
-  output_parse:
-    outputSource: parse_pred_contigs/output_fastas
-    type:
-      type: array
-      items: File
+  output_parse:   # INTERMEDIATE OUTPUT
+    outputSource: parse_pred_contigs/output_high_conf
+    type: File?
+  output_parse:   # INTERMEDIATE OUTPUT
+    outputSource: parse_pred_contigs/output_low_conf
+    type: File?
+  output_parse:   # INTERMEDIATE OUTPUT
+    outputSource: parse_pred_contigs/output_prophages
+    type: File?
+  output_parse_stdout:
+    outputSource: parse_pred_contigs/stdout
+    type: File
+  output_parse_stderr:
+    outputSource: parse_pred_contigs/stderr
+    type: File
+  output_prodigal:   # INTERMEDIATE OUTPUT
+    outputSource: prodigal_prophages/output_fasta
+    type: File
+
 
 
 steps:
@@ -52,6 +71,7 @@ steps:
     out:
       - filtered_contigs_fasta
     run: length_filtering.cwl
+
   virfinder:
     in:
       fasta_file: length_filter/filtered_contigs_fasta
@@ -60,6 +80,7 @@ steps:
       - output
     run: virfinder.cwl
     label: "VirFinder: R package for identifying viral sequences from metagenomic data using sequence signatures"
+
   virsorter:
     in:
       fasta_file: length_filter/filtered_contigs_fasta
@@ -67,15 +88,32 @@ steps:
     out:
       - output_fasta
     run: virsorter.cwl
-    label: 'VirSorter: mining viral signal from microbial genomic data'
+    label: "VirSorter: mining viral signal from microbial genomic data"
+
   parse_pred_contigs:
     in:
       assembly: length_filter/filtered_contigs_fasta
       virfinder_tsv: virfinder/output
       virsorter_dir: input_virsorter_dir
     out:
-      - output_fastas
+      - output_high_conf?
+      - output_low_conf?
+      - output_prophages?
+      - stdout
+      - stderr
     run: parse_viral_pred.cwl
+
+  prodigal_prophages:
+    in:
+      viral_cds: input_name_output_prophages
+      input_fasta: parse_pred_contigs/output_prophages
+      procedure: input_prodigal_procedure
+    out:
+      - output_fasta
+    run: prodigal.cwl
+    label: "Protein-coding gene prediction for prokaryotic genomes"
+
+
 
 doc: |
   scheme:
@@ -88,3 +126,6 @@ doc: |
          |         /
          |        /
       Parsing virus files
+               |
+               |
+      Prodigal && HMMscan

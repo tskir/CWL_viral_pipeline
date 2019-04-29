@@ -35,3 +35,9 @@ stderr: stderr.txt
 outputs:
   stdout: stdout
   stderr: stderr
+
+  output_fasta:
+    type: File
+    outputBinding:
+      glob: $(inputs.viral_cds)
+

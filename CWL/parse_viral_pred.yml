@@ -1,6 +1,6 @@
 assembly:
   class: File
-  path: ../assembly.fasta
+  path: ../ERR575691_host_filtered.fasta
 virfinder_tsv:
   class: File
   path: output.tsv
