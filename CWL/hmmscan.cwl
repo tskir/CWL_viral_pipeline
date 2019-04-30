@@ -10,7 +10,7 @@ requirements:
     dockerPull: hmmscan:latest
   InlineJavascriptRequirement: {}
 
-baseCommand: ["src/hmmscan"]
+baseCommand: ["hmmscan"]
 
 inputs:
   domtblout:
