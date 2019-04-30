@@ -1,0 +1,9 @@
+input_fasta:
+  class: File
+  path: File_viral_CDS.faa
+input_table:
+  class: File
+  path: File_informative_ViPhOG.tsv
+outdir:
+  class: Directory
+  path: .

@@ -11,3 +11,7 @@ input_virsorter_dir:
   path: .
 input_prodigal_procedure: meta
 input_name_output_prophages: File_viral_CDS.faa
+output_hmmscan:  File_hmmer_ViPhOG.tbl
+evalue_hmmscan: 0.001
+noali_hmmscan: true
+database_hmmscan: /vpHMM_database

@@ -32,7 +32,7 @@ inputs:
       separate: true
       prefix: "--noali"
   database:
-    type: File
+    type: string
     inputBinding:
       position: 4
       separate: true

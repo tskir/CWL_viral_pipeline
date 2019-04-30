@@ -31,6 +31,17 @@ inputs:
   input_name_output_prophages:
     type: string
 
+  output_hmmscan:  # HMMSCAN
+    type: string
+  evalue_hmmscan:
+    type: float
+  noali_hmmscan:
+    type: boolean
+  database_hmmscan:
+    type: string
+
+
+
 outputs:
   output_virfinder:  # INTERMEDIATE OUTPUT
     outputSource: virfinder/output
@@ -58,7 +69,9 @@ outputs:
   output_prodigal:   # INTERMEDIATE OUTPUT
     outputSource: prodigal_prophages/output_fasta
     type: File
-
+  output_hmmscan:   # INTERMEDIATE OUTPUT
+    outputSource: hmmscan/output_table
+    type: File
 
 
 steps:
@@ -113,19 +126,42 @@ steps:
     run: prodigal.cwl
     label: "Protein-coding gene prediction for prokaryotic genomes"
 
+  hmmscan:
+    in:
+      domtblout: output_hmmscan
+      e_value: evalue_hmmscan
+      noali: noali_hmmscan
+      database: database_hmmscan
+      seqfile: prodigal_prophages/output_fasta
+    out:
+      - output_table
+    run: hmmscan.cwl
+
+
+
 
 
 doc: |
   scheme:
-      Assembly
-         |
-      Length filter
-         |        \
-         |         \
-      VirFinder     VirSorter
-         |         /
-         |        /
-      Parsing virus files
-               |
-               |
-      Prodigal && HMMscan
+          Assembly
+             |
+          Length filter
+             |        \
+             |         \
+          VirFinder     VirSorter
+             |         /
+             |        /
+          Parsing virus files
+                   |
+                   |
+                Prodigal
+                   |    \
+               HMMscan   \
+                   |      \
+            Modification  |
+                   |      /
+                   |     /
+                  Annotation
+                      |
+                      |
+                   Mapping

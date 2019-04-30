@@ -9,9 +9,9 @@ import pandas as pd
 from Bio import SeqIO
 
 def virus_parser(**kwargs):
-	VirSorter_viral_high = [x for x in glob.glob(os.path.join(kwargs["VS_output"], "Predicted_viral_sequences", "*.fasta")) if re.search(r"cat-[12]\.fasta$", x)]
-	VirSorter_viral_low = glob.glob(os.path.join(kwargs["VS_output"], "Predicted_viral_sequences", "*cat-3.fasta"))[0]
-	VirSorter_prophages = [x for x in glob.glob(os.path.join(kwargs["VS_output"], "Predicted_viral_sequences", "*.fasta")) if re.search(r"cat-[45]\.fasta$", x)]
+	VirSorter_viral_high = [x for x in glob.glob(os.path.join(kwargs["VS_output"], "*.fasta")) if re.search(r"cat-[12]\.fasta$", x)]
+	VirSorter_viral_low = glob.glob(os.path.join(kwargs["VS_output"], "*cat-3.fasta"))[0]
+	VirSorter_prophages = [x for x in glob.glob(os.path.join(kwargs["VS_output"], "*.fasta")) if re.search(r"cat-[45]\.fasta$", x)]
 
 	HC_viral_predictions = []
 	LC_viral_predictions = []
@@ -26,7 +26,7 @@ def virus_parser(**kwargs):
 					if search_id.search(line):
 						VS_high_tuples.append((search_id.search(line).group(1), search_id.search(line).group(2)))
 
-	VF_result_df = pd.read_csv(kwargs["VF_output"], sep = "\t")
+	VF_result_df = pd.read_csv(kwargs["VF_output"], sep="\t")
 	VF_high_ids = list(VF_result_df[(VF_result_df["pvalue"] < 0.05) & (VF_result_df["score"] >= 0.90)]["name"].values)
 	if len(VF_high_ids) < 1:
 		print("No contigs with p < 0.05 and score >= 0.90 were reported by VirFinder")
@@ -75,6 +75,7 @@ def virus_parser(**kwargs):
 		print("No contigs were retrieved from VirSorter categories 1 and 2, therefore no high confidence viral contigs were reported")
 
 	VS_low_tuples = []
+
 	if os.stat(VirSorter_viral_low).st_size != 0:
 		with open(VirSorter_viral_low) as input_file:
 			for line in input_file:
@@ -132,7 +133,7 @@ def virus_parser(**kwargs):
 			for prophage in SeqIO.parse(item, "fasta"):
 				prophage_description = search_id.search(prophage.description).group(1)
 				prophage_suffix = search_id.search(prophage.description).group(2)
-				for record in SeqIO.parse(assembly_file, "fasta"):
+				for record in SeqIO.parse(kwargs["assembly_file"], "fasta"):
 					if re.sub(r"[.,:; ]", "_", record.description) == prophage_description:
 						prophage.id = "%s_%s" % (record.id, prophage_suffix)
 						prophage.description = "_".join(record.description.split()[1:])
@@ -146,16 +147,20 @@ def virus_parser(**kwargs):
 
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description = "Write fasta files with predicted viral contigs sorted in categories and putative prophages")
-	parser.add_argument("-a", "--assemb", dest = "assemb", help = "Metagenomic assembly fasta file", required = True)
-	parser.add_argument("-f", "--vfout", dest = "finder", help = "Absolute or relative path to VirFinder output file", required = True)
-	parser.add_argument("-s", "--vsdir", dest = "sorter", help = "Absolute or relative path to directory containing VirSorter output", required = True)
-	parser.add_argument("-o", "--outdir", dest = "outdir", help = "Absolute or relative path of directory where output viral prediction files should be stored (default: cwd)", default = ".")
+	parser = argparse.ArgumentParser(description="Write fasta files with predicted viral contigs sorted in categories and putative prophages")
+	parser.add_argument("-a", "--assemb", dest="assemb", help="Metagenomic assembly fasta file", required=True)
+	parser.add_argument("-f", "--vfout", dest="finder", help="Absolute or relative path to VirFinder output file",
+						required=True)
+	parser.add_argument("-s", "--vsdir", dest="sorter",
+						help="Absolute or relative path to directory containing VirSorter output", required=True)
+	parser.add_argument("-o", "--outdir", dest="outdir",
+						help="Absolute or relative path of directory where output viral prediction files should be stored (default: cwd)",
+						default=".")
 	if len(sys.argv) == 1:
 		parser.print_help()
 	else:
 		args = parser.parse_args()
-		viral_predictions = virus_parser(assembly_file = args.assemb, VF_output = args.finder, VS_output = args.sorter)
+		viral_predictions = virus_parser(assembly_file=args.assemb, VF_output=args.finder, VS_output=args.sorter)
 		if sum([len(x) for x in viral_predictions]) > 0:
 			if len(viral_predictions[0]) > 0:
 				SeqIO.write(viral_predictions[0], os.path.join(args.outdir, "High_confidence_putative_viral_contigs.fna"), "fasta")

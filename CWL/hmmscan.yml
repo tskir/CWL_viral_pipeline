@@ -1,9 +1,7 @@
 domtblout: File_hmmer_ViPhOG.tbl
 e_value: 0.001
 noali: true
-database:
-  class: File
-  path: /Users/kates/Desktop/dockers/hmmscan/vpHMM_database
+database: /vpHMM_database
 seqfile:
   class: File
   path: File_viral_CDS.faa
