@@ -64,8 +64,7 @@ if __name__ == "__main__":
 	else:
 		args = parser.parse_args()
 		input_file = args.input_file
-		dataset_id = os.path.basename(input_file).split("_")[0]
-		output_file = os.path.join(args.outdir, "%s_ratio_evalue.tsv" % dataset_id)
+		output_file = os.path.join(args.outdir, re.split(r"\.[a-z]+$", os.path.basename(input_file))[0] + "_informative.tsv")
 		input_df = pd.read_csv(input_file, sep = "\t")
 		output_df = ratio_evalue(input_df)
 		if isinstance(output_df, str):
