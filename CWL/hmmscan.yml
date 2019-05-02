@@ -1,7 +1,5 @@
-domtblout: File_hmmer_ViPhOG.tbl
-e_value: 0.001
-noali: true
 database: /vpHMM_database
 seqfile:
   class: File
-  path: File_viral_CDS.faa
+  path: High_confidence_putative_viral_contigs_prodigal.faa
+

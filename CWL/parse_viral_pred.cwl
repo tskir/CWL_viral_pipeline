@@ -29,7 +29,7 @@ inputs:
       separate: true
       prefix: "-s"
   output_dir:
-    type: Directory?
+    type: string?
     inputBinding:
       separate: true
       prefix: "-o"
@@ -41,19 +41,12 @@ outputs:
   stdout: stdout
   stderr: stderr
 
-  output_high_conf:
-    type: File?
+  output_fastas:
+    type:
+      type: array
+      items: File
     outputBinding:
-      glob: High_confidence_putative_viral_contigs*
-  output_low_conf:
-    type: File?
-    outputBinding:
-      glob: Low_confidence_putative_viral_contigs*
-  output_prophages:
-    type: File?
-    outputBinding:
-      glob: Putative_prophages*
-
+      glob: "*.fna"
 
 
 doc: |

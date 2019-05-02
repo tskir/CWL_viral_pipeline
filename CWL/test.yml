@@ -1,7 +1,0 @@
-input_1:
-  class: File
-  path: zigamet2.tbl
-input_2:
-  class: File
-  path: zigamet.tbl
-output_file: zigamet3.tbl

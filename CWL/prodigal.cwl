@@ -11,23 +11,17 @@ requirements:
   InlineJavascriptRequirement: {}
 
 baseCommand: [prodigal]
+arguments: ["-p", "meta"]
+arguments:
+  - prefix: -a
+    valueFrom: $(inputs.input_fasta.nameroot)_prodigal.faa
 
 inputs:
-  viral_cds:
-    type: string
-    inputBinding:
-      separate: true
-      prefix: "-a"
   input_fasta:
     type: File
     inputBinding:
       separate: true
       prefix: "-i"
-  procedure:
-    type: string
-    inputBinding:
-      separate: true
-      prefix: "-p"
 
 stdout: stdout.txt
 stderr: stderr.txt
@@ -39,5 +33,5 @@ outputs:
   output_fasta:
     type: File
     outputBinding:
-      glob: $(inputs.viral_cds)
+      glob: "*_prodigal.faa"
 

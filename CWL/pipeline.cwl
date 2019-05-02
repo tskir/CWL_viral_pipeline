@@ -6,10 +6,12 @@ requirements:
   MultipleInputFeatureRequirement: {}
   InlineJavascriptRequirement: {}
   StepInputExpressionRequirement: {}
+  ScatterFeatureRequirement: {}
 
 inputs:
   input_fasta_file:  # input assembly
     type: File
+
   output_dir_length_filter:  # optional for Length Filter
     type: Directory?
   length_length_filter:
@@ -23,56 +25,60 @@ inputs:
   input_data_dir_virsorter:  # VirSorter
     type: Directory
 
+  outputdir_VS:
+    type: string
+
   input_virsorter_dir:  # Parse files
     type: Directory
 
-  input_prodigal_procedure:  # Prodigal
-    type: string
-  input_name_output_prophages:
+  input_name_output_prophages: # Prodigal
     type: string
 
   output_hmmscan:  # HMMSCAN
     type: string
-  evalue_hmmscan:
-    type: float
-  noali_hmmscan:
-    type: boolean
   database_hmmscan:
     type: string
 
+  name_modification:  # postprocessing
+    type: string
+
+  outdir_mapping:
+    type: string
 
 
 outputs:
-  output_virfinder:  # INTERMEDIATE OUTPUT
+  output_length_filtering:
+    outputSource: length_filter/filtered_contigs_fasta
+    type: File
+  output_virfinder:
     outputSource: virfinder/output
     type: File
-  output_virsorter:   # INTERMEDIATE OUTPUT
+  output_virsorter:
     outputSource: virsorter/output_fasta
     type:
       type: array
       items: File
-  output_parse:   # INTERMEDIATE OUTPUT
-    outputSource: parse_pred_contigs/output_high_conf
-    type: File?
-  output_parse:   # INTERMEDIATE OUTPUT
-    outputSource: parse_pred_contigs/output_low_conf
-    type: File?
-  output_parse:   # INTERMEDIATE OUTPUT
-    outputSource: parse_pred_contigs/output_prophages
-    type: File?
+  output_parse:
+    outputSource: parse_pred_contigs/output_fastas
+    type:
+      type: array
+      items: File
   output_parse_stdout:
     outputSource: parse_pred_contigs/stdout
     type: File
   output_parse_stderr:
     outputSource: parse_pred_contigs/stderr
     type: File
-  output_prodigal:   # INTERMEDIATE OUTPUT
-    outputSource: prodigal_prophages/output_fasta
-    type: File
-  output_hmmscan:   # INTERMEDIATE OUTPUT
-    outputSource: hmmscan/output_table
-    type: File
-
+  output_prodigal:
+    outputSource: subworkflow_for_each_fasta/prodigal_out
+    type:
+      type: array
+      items: File
+  output_final:
+    outputSource: subworkflow_for_each_fasta/mapping_results
+    type:
+      type: array
+      items: Directory
 
 steps:
   length_filter:
@@ -80,7 +86,7 @@ steps:
       fasta_file: input_fasta_file
       length: length_length_filter
       outdir: output_dir_length_filter
-      identifier: output_file_virfinder
+      identifier: identifier_length_filter
     out:
       - filtered_contigs_fasta
     run: length_filtering.cwl
@@ -109,36 +115,34 @@ steps:
       virfinder_tsv: virfinder/output
       virsorter_dir: input_virsorter_dir
     out:
-      - output_high_conf?
-      - output_low_conf?
-      - output_prophages?
+      - output_fastas
       - stdout
       - stderr
     run: parse_viral_pred.cwl
 
-  prodigal_prophages:
+  subworkflow_for_each_fasta:
     in:
-      viral_cds: input_name_output_prophages
-      input_fasta: parse_pred_contigs/output_prophages
-      procedure: input_prodigal_procedure
+      fasta_file: parse_pred_contigs/output_fastas  #array
+
+      input_name_output_prophages: input_name_output_prophages
+
+      output_hmmscan: output_hmmscan
+      database_hmmscan: database_hmmscan
+
+      outdir_mapping: outdir_mapping
+
+      name_modification: name_modification
     out:
-      - output_fasta
-    run: prodigal.cwl
-    label: "Protein-coding gene prediction for prokaryotic genomes"
-
-  hmmscan:
-    in:
-      domtblout: output_hmmscan
-      e_value: evalue_hmmscan
-      noali: noali_hmmscan
-      database: database_hmmscan
-      seqfile: prodigal_prophages/output_fasta
-    out:
-      - output_table
-    run: hmmscan.cwl
+      - prodigal_out
+      - hmmscan_out
+      - modification_out
+      - ratio_evalue_table
+      - annotation_table
+      - mapping_results
 
 
-
+    scatter: fasta_file
+    run: subworkflow_viral_processing.cwl
 
 
 doc: |
@@ -154,14 +158,14 @@ doc: |
           Parsing virus files
                    |
                    |
-                Prodigal
-                   |    \
-               HMMscan   \
-                   |      \
-            Modification  |
-                   |      /
-                   |     /
-                  Annotation
-                      |
-                      |
-                   Mapping
+                Prodigal        -- s
+                   |    \          u
+               HMMscan   \         b
+                   |      \        w
+            Modification  |        o
+                   |      /        r
+                   |     /         k
+                  Annotation       f
+                      |            l
+                      |            o
+                   Mapping      -- w

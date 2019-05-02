@@ -1,0 +1,4 @@
+input_table:
+  class: File
+  path: Viral_protein_annotation_table.tsv
+outdir: mapping_results

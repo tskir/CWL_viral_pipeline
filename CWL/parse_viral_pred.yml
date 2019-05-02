@@ -7,6 +7,4 @@ virfinder_tsv:
 virsorter_dir:
   class: Directory
   path: .
-output_dir:
-  class: Directory
-  path: .
+output_dir: .

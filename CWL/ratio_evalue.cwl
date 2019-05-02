@@ -10,6 +10,7 @@ requirements:
   InlineJavascriptRequirement: {}
 
 baseCommand: ['python', '/Ratio_Evalue_table.py']
+arguments: ["-o", $(runtime.outdir)]
 
 inputs:
   input_table:
@@ -17,14 +18,16 @@ inputs:
     inputBinding:
       separate: true
       prefix: "-i"
-  outdir:
-    type: Directory
-    inputBinding:
-      separate: true
-      prefix: "-o"
 
 outputs:
+  stdout: stdout
+  stderr: stderr
+
   informative_table:
     type: File
     outputBinding:
-      glob: File*tbl
+      glob: "*informative.tsv"
+
+
+stdout: stdout.txt
+stderr: stderr.txt

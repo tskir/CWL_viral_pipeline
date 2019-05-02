@@ -11,26 +11,12 @@ requirements:
   InlineJavascriptRequirement: {}
 
 baseCommand: ["hmmscan"]
+arguments: ["-E", "0.001", "--noali"]
+arguments:
+  - prefix: --domtblout
+    valueFrom: $(inputs.seqfile.nameroot)_hmmscan.tbl
 
 inputs:
-  domtblout:
-    type: string
-    inputBinding:
-      position: 1
-      separate: true
-      prefix: "--domtblout"
-  e_value:
-    type: float
-    inputBinding:
-      position: 2
-      separate: true
-      prefix: "-E"
-  noali:
-    type: boolean
-    inputBinding:
-      position: 3
-      separate: true
-      prefix: "--noali"
   database:
     type: string
     inputBinding:
@@ -53,4 +39,4 @@ outputs:
   output_table:
     type: File
     outputBinding:
-      glob: $(inputs.domtblout)
+      glob: "*hmmscan.tbl"

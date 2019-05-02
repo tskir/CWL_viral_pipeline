@@ -6,10 +6,11 @@ label: "Viral contig annotation"
 
 requirements:
   DockerRequirement:
-    dockerPull: viral_annotation:latest
+    dockerPull: annotation:latest
   InlineJavascriptRequirement: {}
 
-baseCommand: ['python', '/viral_contig_annotation.py']
+baseCommand: ['python', '/viral_contigs_annotation.py']
+arguments: ["-o", $(runtime.outdir)]
 
 inputs:
   input_fasta:
@@ -21,15 +22,10 @@ inputs:
     type: File
     inputBinding:
       separate: true
-      prefix: "-a"
-  outdir:
-    type: Directory
-    inputBinding:
-      separate: true
-      prefix: "-o"
+      prefix: "-t"
 
 outputs:
   annotation_table:
     type: File
     outputBinding:
-      glob: *
+      glob: Viral_protein_annotation_table.tsv

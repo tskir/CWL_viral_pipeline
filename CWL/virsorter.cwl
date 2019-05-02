@@ -14,6 +14,10 @@ baseCommand: [wrapper_phage_contigs_sorter_iPlant.pl]
 
 
 inputs:
+
+  #outputdir:
+  #  type: string
+
   fasta_file:
     type: File
     inputBinding:
@@ -79,6 +83,12 @@ stderr: stderr.txt
 outputs:
   stdout: stdout
   stderr: stderr
+
+  #output_files:
+  #  type: Directory
+  #  outputBinding:
+  #    glob: $(inputs.outputdir)
+
 
   output_fasta:
     type:
