@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/parse_viral_pred.py", line 162, in <module>
+    viral_predictions = virus_parser(assembly_file=args.assemb, VF_output=args.finder, VS_output=args.sorter)
+  File "/parse_viral_pred.py", line 13, in virus_parser
+    VirSorter_viral_low = glob.glob(os.path.join(kwargs["VS_output"], "*cat-3.fasta"))[0]
+IndexError: list index out of range

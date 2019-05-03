@@ -1,0 +1,3 @@
+fasta_file:
+  class: File
+  path: ../../../ERR575691_host_filtered.fasta

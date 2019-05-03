@@ -1,0 +1,2 @@
+cp: cannot stat '/Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data/Phage_gene_catalog/*': No such file or directory
+cat: /Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data/VirSorter_Readme.txt: No such file or directory

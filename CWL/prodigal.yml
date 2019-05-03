@@ -1,3 +1,0 @@
-input_fasta:
-  class: File
-  path: High_confidence_putative_viral_contigs.fna

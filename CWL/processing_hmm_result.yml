@@ -1,4 +1,0 @@
-input_table:
-  class: File
-  path: File_hmmer_ViPhOG.tbl
-output_name: File_hmmer_ViPhOG_modified.tbl

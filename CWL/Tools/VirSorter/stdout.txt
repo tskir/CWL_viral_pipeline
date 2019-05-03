@@ -1,0 +1,46 @@
+Bin            : /usr/local/bin
+Dataset        : VIRSorter
+Input file     : /var/lib/cwl/stg5cce4e23-89c4-408c-8b04-6c8f25e99fc3/ERR575691_host_filtered_filt300bp.fasta
+Db             : 1
+Working dir    : /pBqVlG/virsorter-out
+Custom phages  : 
+Data dir       : /Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data
+Num CPUs       : 4
+blastp         : blastp
+
+Started at Fri May  3 13:03:47 2019
+Step 0.5 : /usr/local/bin/Scripts/Step_1_contigs_cleaning_and_gene_prediction.pl VIRSorter /pBqVlG/virsorter-out/fasta /pBqVlG/virsorter-out/fasta/input_sequences.fna 2 >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+Started at Fri May  3 13:03:53 2019
+Step 0.8 : /miniconda/bin/hmmsearch --tblout /pBqVlG/virsorter-out/Contigs_prots_vs_PFAMa.tab --cpu 4 -o /pBqVlG/virsorter-out/Contigs_prots_vs_PFAMa.out --noali /Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data/PFAM_27/Pfam-A.hmm /pBqVlG/virsorter-out/fasta/VIRSorter_prots.fasta >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+Started at Fri May  3 13:03:53 2019
+Step 0.9 : /miniconda/bin/hmmsearch --tblout /pBqVlG/virsorter-out/Contigs_prots_vs_PFAMb.tab --cpu 4 -o /pBqVlG/virsorter-out/Contigs_prots_vs_PFAMb.out --noali /Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data/PFAM_27/Pfam-B.hmm /pBqVlG/virsorter-out/fasta/VIRSorter_prots.fasta >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+### Revision 0
+Started at Fri May  3 13:03:53 2019
+Out : 
+There are no clusters in the database, so skip the hmmsearch
+
+Started at Fri May  3 13:03:53 2019
+
+Step 1.3 : /miniconda/bin/blastp -query /pBqVlG/virsorter-out/fasta/VIRSorter_prots.fasta -db /pBqVlG/virsorter-out/r_0/db/Pool_new_unclustered -out /pBqVlG/virsorter-out/r_0/Contigs_prots_vs_New_unclustered.tab -num_threads 4 -outfmt 6 -evalue 0.001 >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+	
+Started at Fri May  3 13:03:53 2019
+Step 2 : /usr/local/bin/Scripts/Step_2_merge_contigs_annotation.pl /pBqVlG/virsorter-out/fasta/VIRSorter_mga_final.predict /pBqVlG/virsorter-out/Contigs_prots_vs_Phage_Gene_Catalog.tab /pBqVlG/virsorter-out/Contigs_prots_vs_Phage_Gene_unclustered.tab /pBqVlG/virsorter-out/Contigs_prots_vs_PFAMa.tab /pBqVlG/virsorter-out/Contigs_prots_vs_PFAMb.tab /Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data/Phage_gene_catalog/Phage_Clusters_current.tab /pBqVlG/virsorter-out/VIRSorter_affi-contigs.csv >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+Started at Fri May  3 13:03:53 2019
+Step 3 : /usr/local/bin/Scripts/Step_3_highlight_phage_signal.pl /pBqVlG/virsorter-out/VIRSorter_affi-contigs.csv /pBqVlG/virsorter-out/VIRSorter_phage-signal.csv 4 >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+Setting up the final result file
+Started at Fri May  3 13:03:53 2019
+Step 4 : /usr/local/bin/Scripts/Step_4_summarize_phage_signal.pl /pBqVlG/virsorter-out/VIRSorter_affi-contigs.csv /pBqVlG/virsorter-out/VIRSorter_phage-signal.csv /pBqVlG/virsorter-out/VIRSorter_global-phage-signal.csv /pBqVlG/virsorter-out/VIRSorter_new_prot_list.csv >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+
+Started at Fri May  3 13:03:53 2019
+
+Step 5 : /usr/local/bin/Scripts/Step_5_get_phage_fasta-gb.pl VIRSorter /pBqVlG/virsorter-out >> /pBqVlG/virsorter-out/logs/out 2>> /pBqVlG/virsorter-out/logs/err
+	
+Cleaning the output directory
+rm -r /pBqVlG/virsorter-out/r_0/db : 

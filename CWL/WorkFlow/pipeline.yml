@@ -1,0 +1,10 @@
+input_fasta_file:
+  class: File
+  path: ../../ERR575691_host_filtered.fasta
+input_data_dir_virsorter:
+  class: Directory
+  path: /Users/kates/Desktop/CWL_viral_pipeline/CWL/Docker/virsorter/virsorter-data
+input_virsorter_dir:
+  class: Directory
+  path: /Users/kates/Desktop/CWL_viral_pipeline/CWL/Tools/VirSorter
+
