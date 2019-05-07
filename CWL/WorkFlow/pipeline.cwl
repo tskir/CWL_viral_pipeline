@@ -12,11 +12,17 @@ inputs:
   input_fasta_file:  # input assembly
     type: File
 
-  input_data_dir_virsorter:  # VirSorter
+  virsorter_data:
     type: Directory
+    default:
+      class: Directory
+      path:  ../Docker/virsorter/virsorter-data
 
-  input_virsorter_dir:
-    type: Directory
+  virsorter_dir:
+    type: Directory?
+    default:
+      class: Directory
+      path:  .
 
 outputs:
   output_length_filtering:
@@ -70,8 +76,8 @@ steps:
 
   virsorter:
     in:
+      data: virsorter_data
       fasta_file: length_filter/filtered_contigs_fasta
-      data: input_data_dir_virsorter
     out:
       - output_fasta
     run: ../Tools/VirSorter/virsorter.cwl
@@ -81,7 +87,7 @@ steps:
     in:
       assembly: length_filter/filtered_contigs_fasta
       virfinder_tsv: virfinder/output
-      virsorter_dir: input_virsorter_dir
+      virsorter_dir: virsorter_dir
     out:
       - output_fastas
       - stdout
@@ -101,7 +107,6 @@ steps:
 
     scatter: fasta_file
     run: subworkflow_viral_processing.cwl
-
 
 doc: |
   scheme:

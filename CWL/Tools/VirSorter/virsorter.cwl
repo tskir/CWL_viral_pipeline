@@ -21,7 +21,12 @@ inputs:
       separate: true
       prefix: "-f"
   data:
-    type: Directory
+    type: Directory?
+    default:
+      class: Directory
+      path:  ../../Docker/virsorter/virsorter-data
+      listing: []
+      basename: virsorter-data
     inputBinding:
       prefix: --data-dir
   dataset:
@@ -78,8 +83,7 @@ outputs:
       type: array
       items: File
     outputBinding:
-      glob: ../../Docker/virsorter/virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta
-
+      glob: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta  #  virsorter: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta
 
 doc: |
   usage: wrapper_phage_contigs_sorter_iPlant.pl --fasta sequences.fa

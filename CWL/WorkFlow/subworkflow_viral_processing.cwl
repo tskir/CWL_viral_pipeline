@@ -13,15 +13,6 @@ inputs:
   fasta_file:
     type: File
 
-  database_hmmscan:
-    type: string
-
-  name_modification:  # File postprocessing
-    type: string
-
-  outdir_mapping:  # Mapping
-    type: string
-
 outputs:
   prodigal_out:
     outputSource: prodigal/output_fasta
@@ -49,30 +40,28 @@ steps:
       input_fasta: fasta_file
     out:
       - output_fasta
-    run: prodigal.cwl
+    run: ../Tools/Prodigal/prodigal.cwl
 
   hmmscan:
     in:
       seqfile: prodigal/output_fasta
-      database: database_hmmscan
     out:
       - output_table
-    run: hmmscan.cwl
+    run: ../Tools/HMMScan/hmmscan.cwl
 
   hmm_postprocessing:
     in:
       input_table: hmmscan/output_table
-      output_name: name_modification
     out:
       - modified_file
-    run: processing_hmm_result.cwl
+    run: ../Tools/Modification/processing_hmm_result.cwl
 
   ratio_evalue:
     in:
       input_table: hmm_postprocessing/modified_file
     out:
       - informative_table
-    run: ratio_evalue.cwl
+    run: ../Tools/RatioEvalue/ratio_evalue.cwl
 
   annotation:
     in:
@@ -80,12 +69,11 @@ steps:
       input_table: ratio_evalue/informative_table
     out:
       - annotation_table
-    run: viral_annotation.cwl
+    run: ../Tools/Annotation/viral_annotation.cwl
 
   mapping:
     in:
       input_table: annotation/annotation_table
-      outdir: outdir_mapping
     out:
       - folder
-    run: mapping.cwl
+    run: ../Tools/Mapping/mapping.cwl
