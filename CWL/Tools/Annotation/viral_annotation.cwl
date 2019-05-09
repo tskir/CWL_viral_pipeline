@@ -23,9 +23,14 @@ inputs:
     inputBinding:
       separate: true
       prefix: "-t"
+  input_fna:
+    type: File
+    inputBinding:
+      separate: true
+      prefix: "-n"
 
 outputs:
   annotation_table:
     type: File
     outputBinding:
-      glob: Viral_protein_annotation_table.tsv
+      glob: "*_prot_ann_table.tsv"

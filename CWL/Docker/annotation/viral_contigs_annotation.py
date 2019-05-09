@@ -35,11 +35,14 @@ if __name__ == "__main__":
 	parser.add_argument("-p", "--prot", dest = "prot_file", help = "Relative or absolute path to protein file of predicted viral contigs", required = True)
 	parser.add_argument("-t", "--table", dest = "ratio_file", help = "Relative or absolute path to ratio_evalue tabular file generated for predicted viral contigs", required = True)
 	parser.add_argument("-o", "--outdir", dest = "output_dir", help = "Relative path to directory where you want the output file to be stored (default: cwd)", default = ".")
-
+	parser.add_argument("-n", "--name", dest="name_file",
+						help="Name of processing .fna file to write correct output name")
 	if len(sys.argv) == 1:
 		parser.print_help()
 
 	else:
 		args = parser.parse_args()
 		final_df = prot_annot_tbl(args.prot_file, args.ratio_file)
-		final_df.to_csv(os.path.join(args.output_dir, "Viral_protein_annotation_table.tsv"), sep = "\t", index = False)
+		outputname_list = args.name_file.split('.')[0].split('/')
+		outputname = outputname_list[len(outputname_list)-1]
+		final_df.to_csv(os.path.join(args.output_dir, str(outputname) + "_prot_ann_table.tsv"), sep="\t", index = False)

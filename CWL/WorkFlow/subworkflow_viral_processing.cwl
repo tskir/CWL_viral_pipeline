@@ -32,6 +32,9 @@ outputs:
   mapping_results:
     outputSource: mapping/folder
     type: Directory
+  assign_results:
+    outputSource: assign/assign_table
+    type: File
 
 steps:
   prodigal:
@@ -67,6 +70,7 @@ steps:
     in:
       input_fasta: prodigal/output_fasta
       input_table: ratio_evalue/informative_table
+      input_fna: fasta_file
     out:
       - annotation_table
     run: ../Tools/Annotation/viral_annotation.cwl
@@ -77,3 +81,10 @@ steps:
     out:
       - folder
     run: ../Tools/Mapping/mapping.cwl
+
+  assign:
+    in:
+      input_table: annotation/annotation_table
+    out:
+      - assign_table
+    run: ../Tools/Assign/assign.cwl

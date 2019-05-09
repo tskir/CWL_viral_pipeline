@@ -52,11 +52,16 @@ outputs:
     type:
       type: array
       items: File
-  output_final:
+  output_final_mapping:
     outputSource: subworkflow_for_each_fasta/mapping_results
     type:
       type: array
       items: Directory
+  output_final_assign:
+    outputSource: subworkflow_for_each_fasta/assign_results
+    type:
+      type: array
+      items: File
 
 steps:
   length_filter:
@@ -104,6 +109,7 @@ steps:
       - ratio_evalue_table
       - annotation_table
       - mapping_results
+      - assign_results
 
     scatter: fasta_file
     run: subworkflow_viral_processing.cwl
@@ -121,14 +127,14 @@ doc: |
           Parsing virus files
                    |
                    |
-                Prodigal        -- S
-                   |    \          u
-               HMMscan   \         b
-                   |      \        W
-            Modification  |        o
-                   |      /        r
-                   |     /         k
-                  Annotation       F
-                      |            l
-                      |            o
-                   Mapping      -- w
+                Prodigal             -- S
+                   |    \               u
+               HMMscan   \              b
+                   |      \             W
+            Modification   |            o
+                   |      /             r
+                   |     /              k
+                  Annotation            F
+                     |    \             l
+                     |     \            o
+                  Mapping   Assign   -- w

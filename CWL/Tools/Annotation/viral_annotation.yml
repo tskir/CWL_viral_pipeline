@@ -1,6 +1,9 @@
 input_fasta:
   class: File
-  path: File_viral_CDS.faa
+  path: ../../Files/File_viral_CDS.faa
 input_table:
   class: File
-  path: File_hmmer_ViPhOG_modified_informative.tsv
+  path: ../../Files/File_hmmer_ViPhOG_modified_informative.tsv
+input_fna:
+  class: File
+  path: ../../Files/High_confidence_putative_viral_contigs.fna
