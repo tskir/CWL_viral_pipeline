@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 import os
 import re
 import glob
@@ -98,6 +99,7 @@ def contig_tax(annot_df, min_prot, prop_annot, tax_thres):
 	return final_df
 
 if __name__ == "__main__":
+
 	parser = argparse.ArgumentParser(description = "Generate tabular file with taxonomic assignment of viral contigs based on ViPhOG annotations")
 	parser.add_argument("-i", "--input", dest = "input_file", help = "Annotation table generated with script viral_contig_maps.py", required = True)
 	parser.add_argument("--minprot", dest = "min_prot", type = int, help = "Minimum number of proteins with ViPhOG annotations required for taxonomic assignment (used when --percent is lower than this value, default: 3)", default = 3)
