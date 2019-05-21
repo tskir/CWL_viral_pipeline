@@ -1,0 +1,28 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/Prodigal/prodigal.cwl --tool cwltool
+
+- job: ../Tools/Prodigal/prodigal.yml
+  tool: ../Tools/Prodigal/prodigal.cwl
+  output:
+      output_fasta:
+        basename: High_confidence_putative_viral_contigs_prodigal.faa
+        checksum: sha1$2255ffc83ee9e78c65c6402eb324b81c0e8becec
+        class: File
+        location: High_confidence_putative_viral_contigs_prodigal.faa
+        path: High_confidence_putative_viral_contigs_prodigal.faa
+        size: 109213
+
+      stderr:
+        basename: stderr.txt
+        checksum: sha1$b6d1b5238de875ec0a679089b171a4e1ebbf964f
+        class: File
+        location: stderr.txt
+        path: stderr.txt
+        size: 591
+
+      stdout:
+        basename: stdout.txt
+        checksum: sha1$5038b6a50b5a5476f16ce2efbc3c6897a31f1fbe
+        class: File
+        location: stdout.txt
+        path: stdout.txt
+        size: 73276
