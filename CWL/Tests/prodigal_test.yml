@@ -1,4 +1,4 @@
-# cwltest --basedir cwl_test_dir --test ../Tools/Prodigal/prodigal.cwl --tool cwltool
+# cwltest --basedir cwl_test_dir --test ../Tools/Prodigal/virfinder.cwl --tool cwltool
 
 - job: ../Tools/Prodigal/prodigal.yml
   tool: ../Tools/Prodigal/prodigal.cwl

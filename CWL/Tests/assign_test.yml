@@ -1,0 +1,25 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/Assign/assign.cwl --tool cwltool
+
+- job: ../Tools/Assign/assign.yml
+  tool: ../Tools/Assign/assign.cwl
+  output:
+      assign_table:
+        basename: Viral_protein_annotation_table_tax_assign.tsv
+        class: File
+        location: Viral_protein_annotation_table_tax_assign.tsv
+        path: Viral_protein_annotation_table_tax_assign.tsv
+        size: 554
+
+      stderr:
+        basename: stderr.txt
+        class: File
+        location: stderr.txt
+        path: stderr.txt
+        size: 0
+
+      stdout:
+        basename: stdout.txt
+        class: File
+        location: stdout.txt
+        path: stdout.txt
+        size: 66748

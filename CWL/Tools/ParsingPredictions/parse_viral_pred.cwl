@@ -19,7 +19,7 @@ inputs:
       separate: true
       prefix: "-a"
   virfinder_tsv:
-    type: File
+    type: File?
     inputBinding:
       separate: true
       prefix: "-f"

@@ -20,25 +20,22 @@ arguments:
   - prefix: --domtblout
     valueFrom: $(inputs.seqfile.nameroot)_hmmscan.tbl
     position: 3
-  - valueFrom: "/vpHMM_database"
+  - valueFrom: /vpHMM_database/vpHMM_database
     position: 4
   - valueFrom: --noali
     position: 1
 
 inputs:
+
   seqfile:
     type: File
     inputBinding:
       position: 5
       separate: true
 
-
 stdout: stdout.txt
-stderr: stderr.txt
 
 outputs:
-  stdout: stdout
-  stderr: stderr
 
   output_table:
     type: File

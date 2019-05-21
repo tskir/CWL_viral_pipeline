@@ -1,0 +1,12 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/Annotation/viral_annotation.cwl --tool cwltool
+
+- job: ../Tools/Annotation/viral_annotation.yml
+  tool: ../Tools/Annotation/viral_annotation.cwl
+  output:
+      annotation_table:
+        basename: High_confidence_putative_viral_contigs_prot_ann_table.tsv
+        checksum: sha1$e7b28fdae52358fc900616156587212878d4c1e5
+        class: File
+        location: High_confidence_putative_viral_contigs_prot_ann_table.tsv
+        path: High_confidence_putative_viral_contigs_prot_ann_table.tsv
+        size: 1568

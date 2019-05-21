@@ -9,6 +9,7 @@ import pandas as pd
 from Bio import SeqIO
 
 def virus_parser(**kwargs):
+	print(os.listdir(kwargs['VS_output']))
 	VirSorter_viral_high = [x for x in glob.glob(os.path.join(kwargs["VS_output"], "*.fasta")) if re.search(r"cat-[12]\.fasta$", x)]
 	VirSorter_viral_low = glob.glob(os.path.join(kwargs["VS_output"], "*cat-3.fasta"))[0]
 	VirSorter_prophages = [x for x in glob.glob(os.path.join(kwargs["VS_output"], "*.fasta")) if re.search(r"cat-[45]\.fasta$", x)]

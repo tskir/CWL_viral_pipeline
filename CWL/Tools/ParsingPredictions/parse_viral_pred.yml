@@ -6,5 +6,5 @@ virfinder_tsv:
   path: ../../Files/output.tsv
 virsorter_dir:
   class: Directory
-  path: .
-output_dir: ../VirSorter
+  path: ../VirSorter/Predicted_viral_sequences
+output_dir: .

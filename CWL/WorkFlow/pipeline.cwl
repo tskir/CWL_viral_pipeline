@@ -16,13 +16,8 @@ inputs:
     type: Directory
     default:
       class: Directory
-      path:  ../Docker/virsorter/virsorter-data
+      path:  ../Tools/VirSorter/virsorter-data
 
-  virsorter_dir:
-    type: Directory?
-    default:
-      class: Directory
-      path:  .
 
 outputs:
   output_length_filtering:
@@ -32,10 +27,8 @@ outputs:
     outputSource: virfinder/output
     type: File
   output_virsorter:
-    outputSource: virsorter/output_fasta
-    type:
-      type: array
-      items: File
+    outputSource: virsorter/predicted_viral_seq_dir
+    type: Directory
   output_parse:
     outputSource: parse_pred_contigs/output_fastas
     type:
@@ -84,7 +77,7 @@ steps:
       data: virsorter_data
       fasta_file: length_filter/filtered_contigs_fasta
     out:
-      - output_fasta
+      - predicted_viral_seq_dir
     run: ../Tools/VirSorter/virsorter.cwl
     label: "VirSorter: mining viral signal from microbial genomic data"
 
@@ -92,7 +85,7 @@ steps:
     in:
       assembly: length_filter/filtered_contigs_fasta
       virfinder_tsv: virfinder/output
-      virsorter_dir: virsorter_dir
+      virsorter_dir: virsorter/predicted_viral_seq_dir
     out:
       - output_fastas
       - stdout

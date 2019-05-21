@@ -1,0 +1,40 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/ParsingPredictions/parse_viral_pred.cwl --tool cwltool
+
+- job: ../Tools/ParsingPredictions/parse_viral_pred.yml
+  tool: ../Tools/ParsingPredictions/parse_viral_pred.cwl
+  output:
+      output_fastas:
+        - class: File
+          basename: High_confidence_putative_viral_contigs.fna
+          checksum: sha1$a9e13ac2cbcf79c01fe3d69d157e29fcec7585c3
+          location: High_confidence_putative_viral_contigs.fna
+          path: High_confidence_putative_viral_contigs.fna
+          size: 205451
+        - class: File
+          basename: Low_confidence_putative_viral_contigs.fna
+          checksum: sha1$f3a54007ca77eb5f3c6d3d44703a7259e8a5e371
+          location: Low_confidence_putative_viral_contigs.fna
+          path: Low_confidence_putative_viral_contigs.fna
+          size: 7383
+        - class: File
+          basename: Putative_prophages.fna
+          checksum: sha1$3921383191e46a9de9c77b4b77e1bbef7f14c274
+          location: Putative_prophages.fna
+          path: Putative_prophages.fna
+          size: 83317
+
+      stderr:
+        basename: stderr.txt
+        checksum: sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709
+        class: File
+        location: stderr.txt
+        path: stderr.txt
+        size: 0
+
+      stdout:
+        basename: stdout.txt
+        checksum: sha1$2aa18ea97d384b5093d20c79a506cefeb6a60382
+        class: File
+        location: stdout.txt
+        path: stdout.txt
+        size: 392

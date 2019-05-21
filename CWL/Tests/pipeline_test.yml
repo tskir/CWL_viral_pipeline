@@ -1,0 +1,28 @@
+# cwltest --basedir cwl_test_dir --test ../WorkFlow/pipeline.cwl --tool cwltool
+
+- job: ../WorkFlow/pipeline.yml
+  tool: ../WorkFlow/pipeline.cwl
+  output:
+      output_table:
+        basename: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        checksum: sha1$983d886773bfa69af802b8f8992dc22ed4243de9
+        class: File
+        location: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        path: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        size: 147421
+
+      stderr:
+        basename: stderr.txt
+        checksum: sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709
+        class: File
+        location: stderr.txt
+        path: stderr.txt
+        size: 0
+
+      stdout:
+        basename: stdout.txt
+        checksum: sha1$882e93d0ee3d883c34ea5830b85a5e9021107930
+        class: File
+        location: stdout.txt
+        path: stdout.txt
+        size: 589982

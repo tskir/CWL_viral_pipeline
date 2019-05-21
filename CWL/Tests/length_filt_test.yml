@@ -1,0 +1,12 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/LengthFiltering/length_filtering.cwl --tool cwltool
+
+- job: ../Tools/LengthFiltering/length_filtering.yml
+  tool: ../Tools/LengthFiltering/length_filtering.cwl
+  output:
+      filtered_contigs_fasta:
+        basename: ERR575691_host_filtered_filt500bp.fasta
+        checksum: sha1$d15b69ff3be57c036f8c4585d21855b4bc686c56
+        class: File
+        location: ERR575691_host_filtered_filt500bp.fasta
+        path: ERR575691_host_filtered_filt500bp.fasta
+        size: 2212936

@@ -1,0 +1,83 @@
+# cwltest --basedir cwl_test_dir --test ../WorkFlow/subworkflow_viral_processing.cwl --tool cwltool
+
+- job: ../WorkFlow/subworkflow.yml
+  tool: ../WorkFlow/subworkflow_viral_processing.cwl
+  output:
+      prodigal_out:
+        basename: High_confidence_putative_viral_contigs_prodigal.faa
+        class: File
+        location: High_confidence_putative_viral_contigs_prodigal.faa
+        path: High_confidence_putative_viral_contigs_prodigal.faa
+        size: 109213
+
+      hmmscan_out:
+        basename: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        class: File
+        location: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        path: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        size: 151094
+
+      modification_out:
+          basename: High_confidence_putative_viral_contigs_prodigal_hmmscan_modified.faa
+          class: File
+          location: High_confidence_putative_viral_contigs_prodigal_hmmscan_modified.faa
+          path: High_confidence_putative_viral_contigs_prodigal_hmmscan_modified.faa
+          size: 105441
+
+      annotation_table:
+          basename: High_confidence_putative_viral_contigs_prot_ann_table.tsv
+          class: File
+          location: High_confidence_putative_viral_contigs_prot_ann_table.tsv
+          path: High_confidence_putative_viral_contigs_prot_ann_table.tsv
+          size: 37137
+
+      mapping_results:
+          basename: Mapping_results
+          class: Directory
+          location: Mapping_results
+          path: Mapping_results
+          listing:
+            - class: File
+              path: NODE_11_length_37379_cov_2108.923079_11_H_1.pdf
+              location: NODE_11_length_37379_cov_2108.923079_11_H_1.pdf
+              basename: NODE_11_length_37379_cov_2108.923079_11_H_1.pdf
+              size: 5968
+
+            - class: File
+              path: NODE_10_length_41715_cov_27633.072156_11_H_2_circular.pdf
+              location: NODE_10_length_41715_cov_27633.072156_11_H_2_circular.pdf
+              basename: NODE_10_length_41715_cov_27633.072156_11_H_2_circular.pdf
+              size: 6611
+
+            - class: File
+              path: NODE_32_length_5441_cov_927.018381_11_H_1_circular.pdf
+              location: NODE_32_length_5441_cov_927.018381_11_H_1_circular.pdf
+              basename: NODE_32_length_5441_cov_927.018381_11_H_1_circular.pdf
+              size: 4807
+
+            - class: File
+              path: NODE_4_length_86514_cov_9.751212_01_2.pdf
+              location: NODE_4_length_86514_cov_9.751212_01_2.pdf
+              basename: NODE_4_length_86514_cov_9.751212_01_2.pdf
+              size: 8085
+
+            - class: File
+              path: NODE_14_length_30801_cov_940.226924_11_H_2.pdf
+              location: NODE_14_length_30801_cov_940.226924_11_H_2.pdf
+              basename: NODE_14_length_30801_cov_940.226924_11_H_2.pdf
+              size: 6019
+
+
+      assign_results:
+        basename: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        class: File
+        location: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        path: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        size: 468
+
+      ratio_evalue_table:
+        basename: High_confidence_putative_viral_contigs_prodigal_hmmscan_modified_informative.tsv
+        class: File
+        location: High_confidence_putative_viral_contigs_prodigal_hmmscan_modified_informative.tsv
+        path: High_confidence_putative_viral_contigs_prodigal_hmmscan_modified_informative.tsv
+        size: 14375

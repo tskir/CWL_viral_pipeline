@@ -1,0 +1,28 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/VirFinder/virfinder.cwl --tool cwltool
+
+- job: ../Tools/VirFinder/virfinder.yml
+  tool: ../Tools/VirFinder/virfinder.cwl
+  output:
+      output:
+        basename: VirFinder_output.tsv
+        checksum: sha1$a0794a6cd15d7549b704191e21a65e1854c51e9a
+        class: File
+        location: VirFinder_output.tsv
+        path: VirFinder_output.tsv
+        size: 85756
+
+      stderr:
+        basename: stderr.txt
+        checksum: sha1$852dc33684994e4cf676cbe19cfd4cbdf21493f3
+        class: File
+        location: stderr.txt
+        path: stderr.txt
+        size: 155
+
+      stdout:
+        basename: stdout.txt
+        checksum: sha1$2c95f9a83fa509378180a80f460aff4f60097774
+        class: File
+        location: stdout.txt
+        path: stdout.txt
+        size: 158366

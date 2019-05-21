@@ -6,5 +6,9 @@ RUN yum -y update; yum clean all
 RUN yum -y install gcc git make wget; yum clean all
 RUN wget http://eddylab.org/software/hmmer/hmmer.tar.gz && tar -zxvf hmmer.tar.gz && cd hmmer-* && ./configure && make && make install
 
+RUN wget -nH -P vpHMM_database ftp://ftp.ebi.ac.uk/pub/databases/metagenomics/vpHMM_database/vpHMM_database.h3f
+RUN wget -nH -P vpHMM_database ftp://ftp.ebi.ac.uk/pub/databases/metagenomics/vpHMM_database/vpHMM_database.h3i
+RUN wget -nH -P vpHMM_database ftp://ftp.ebi.ac.uk/pub/databases/metagenomics/vpHMM_database/vpHMM_database.h3m
+RUN wget -nH -P vpHMM_database ftp://ftp.ebi.ac.uk/pub/databases/metagenomics/vpHMM_database/vpHMM_database.h3p
 
 CMD ["hmmscan"]

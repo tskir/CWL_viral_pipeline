@@ -1,0 +1,12 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/Modification/processing_hmm_result.cwl --tool cwltool
+
+- job: ../Tools/Modification/processing_hmm_result.yml
+  tool: ../Tools/Modification/processing_hmm_result.cwl
+  output:
+      modified_file:
+        basename: File_hmmer_ViPhOG_modified.faa
+        checksum: sha1$32cd31b618e80ca7f991014e771ac7ff058e0baf
+        class: File
+        location: File_hmmer_ViPhOG_modified.faa
+        path: File_hmmer_ViPhOG_modified.faa
+        size: 3966

@@ -80,6 +80,8 @@ steps:
       input_table: annotation/annotation_table
     out:
       - folder
+      - stdout
+      - stderr
     run: ../Tools/Mapping/mapping.cwl
 
   assign:

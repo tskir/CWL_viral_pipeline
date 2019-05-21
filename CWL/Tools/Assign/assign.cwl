@@ -10,7 +10,6 @@ requirements:
   InlineJavascriptRequirement: {}
 
 baseCommand: ['python', '/contig_taxonomic_assign.py']
-# arguments: ["-o", "Assign_results"]
 
 inputs:
   input_table:

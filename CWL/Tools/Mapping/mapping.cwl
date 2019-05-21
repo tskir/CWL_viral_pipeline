@@ -19,9 +19,13 @@ inputs:
       separate: true
       prefix: "-t"
 
+stderr: stderr.txt
+stdout: stdout.txt
+
 outputs:
   stdout: stdout
   stderr: stderr
+
   folder:
     type: Directory
     outputBinding:

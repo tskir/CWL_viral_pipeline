@@ -24,7 +24,7 @@ inputs:
     type: Directory?
     default:
       class: Directory
-      path:  ../../Docker/virsorter/virsorter-data
+      path:  ../Tools/VirSorter/virsorter-data
       listing: []
       basename: virsorter-data
     inputBinding:
@@ -77,13 +77,17 @@ stderr: stderr.txt
 outputs:
   stdout: stdout
   stderr: stderr
+  predicted_viral_seq_dir:
+     type: Directory
+     outputBinding:
+        glob: virsorter-out/Predicted_viral_sequences/
 
-  output_fasta:
-    type:
-      type: array
-      items: File
-    outputBinding:
-      glob: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta  #  virsorter: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta
+#  output_fasta:
+#    type:
+#      type: array
+#      items: File
+#    outputBinding:
+#      glob: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta  #  virsorter: virsorter-out/Predicted_viral_sequences/*[1,2,3,4,5].fasta
 
 doc: |
   usage: wrapper_phage_contigs_sorter_iPlant.pl --fasta sequences.fa

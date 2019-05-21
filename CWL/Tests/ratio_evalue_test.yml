@@ -1,0 +1,27 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/RatioEvalue/ratio_evalue.cwl --tool cwltool
+
+- job: ../Tools/RatioEvalue/ratio_evalue.yml
+  tool: ../Tools/RatioEvalue/ratio_evalue.cwl
+  output:
+      informative_table:
+        basename: File_hmmer_ViPhOG_modified_informative.tsv
+        class: File
+        location: File_hmmer_ViPhOG_modified_informative.tsv
+        path: File_hmmer_ViPhOG_modified_informative.tsv
+        size: 292
+
+      stderr:
+        basename: stderr.txt
+        checksum: sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709
+        class: File
+        location: stderr.txt
+        path: stderr.txt
+        size: 0
+
+      stdout:
+        basename: stdout.txt
+        checksum: sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709
+        class: File
+        location: stdout.txt
+        path: stdout.txt
+        size: 0

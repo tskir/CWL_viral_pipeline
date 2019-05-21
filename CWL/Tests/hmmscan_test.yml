@@ -1,0 +1,11 @@
+# cwltest --basedir cwl_test_dir --test ../Tools/HMMScan/hmmscan.cwl --tool cwltool
+
+- job: ../Tools/HMMScan/hmmscan.yml
+  tool: ../Tools/HMMScan/hmmscan.cwl
+  output:
+      output_table:
+        basename: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        class: File
+        location: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        path: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
+        size: 147451
