@@ -9,77 +9,63 @@
         location: Predicted_viral_sequences
         path: Predicted_viral_sequences
         listing:
-          - class: File
-            size: 0
-            path: VIRSorter_prophages_cat-6.gb
-            basename: VIRSorter_prophages_cat-6.gb
-            location: VIRSorter_prophages_cat-6.gb
 
           - class: File
             size: 42882
             basename: VIRSorter_cat-1.fasta
             path: VIRSorter_cat-1.fasta
             location: VIRSorter_cat-1.fasta
-
-          - class: File
-            size: 0
-            basename: VIRSorter_cat-3.fasta
-            path: VIRSorter_cat-3.fasta
-            location: VIRSorter_cat-3.fasta
-
-          - class: File
-            size: 100589
-            basename: VIRSorter_cat-1.gb
-            path: VIRSorter_cat-1.gb
-            location: VIRSorter_cat-1.gb
-
           - class: File
             size: 159145
             basename: VIRSorter_cat-2.fasta
             path: VIRSorter_cat-2.fasta
             location: VIRSorter_cat-2.fasta
-
+          - class: File
+            size: 0
+            basename: VIRSorter_cat-3.fasta
+            path: VIRSorter_cat-3.fasta
+            location: VIRSorter_cat-3.fasta
           - class: File
             size: 43597
             basename: VIRSorter_prophages_cat-4.fasta
             path: VIRSorter_prophages_cat-4.fasta
             location: VIRSorter_prophages_cat-4.fasta
-
+          - class: File
+            size: 38377
+            basename: VIRSorter_prophages_cat-5.fasta
+            path: VIRSorter_prophages_cat-5.fasta
+            location: VIRSorter_prophages_cat-5.fasta
           - class: File
             size: 0
             basename: VIRSorter_prophages_cat-6.fasta
             path: VIRSorter_prophages_cat-6.fasta
             location: VIRSorter_prophages_cat-6.fasta
 
-          - class: File
-            size: 404902
+            # not used
+          - class: File?
+            basename: VIRSorter_cat-1.gb
+            path: VIRSorter_cat-1.gb
+            location: VIRSorter_cat-1.gb
+          - class: File?
             basename: VIRSorter_cat-2.gb
             path: VIRSorter_cat-2.gb
             location: VIRSorter_cat-2.gb
-
-          - class: File
-            size: 105469
-            basename: VIRSorter_prophages_cat-4.gb
-            path: VIRSorter_prophages_cat-4.gb
-            location: VIRSorter_prophages_cat-4.gb
-
-          - class: File
-            size: 92828
-            basename: VIRSorter_prophages_cat-5.gb
-            path: VIRSorter_prophages_cat-5.gb
-            location: VIRSorter_prophages_cat-5.gb
-
-          - class: File
-            size: 38377
-            basename: VIRSorter_prophages_cat-5.fasta
-            path: VIRSorter_prophages_cat-5.fasta
-            location: VIRSorter_prophages_cat-5.fasta
-
-          - class: File
-            size: 0
+          - class: File?
             basename: VIRSorter_cat-3.gb
             path: VIRSorter_cat-3.gb
             location: VIRSorter_cat-3.gb
+          - class: File?
+            basename: VIRSorter_prophages_cat-4.gb
+            path: VIRSorter_prophages_cat-4.gb
+            location: VIRSorter_prophages_cat-4.gb
+          - class: File?
+            basename: VIRSorter_prophages_cat-5.gb
+            path: VIRSorter_prophages_cat-5.gb
+            location: VIRSorter_prophages_cat-5.gb
+          - class: File?
+            path: VIRSorter_prophages_cat-6.gb
+            basename: VIRSorter_prophages_cat-6.gb
+            location: VIRSorter_prophages_cat-6.gb
 
       stderr:
         basename: stderr.txt
