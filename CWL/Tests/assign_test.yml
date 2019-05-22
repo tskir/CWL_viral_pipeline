@@ -4,18 +4,18 @@
   tool: ../Tools/Assign/assign.cwl
   output:
       assign_table:
-        basename: Viral_protein_annotation_table_tax_assign.tsv
+        basename: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
         class: File
-        location: Viral_protein_annotation_table_tax_assign.tsv
-        path: Viral_protein_annotation_table_tax_assign.tsv
-        size: 554
+        location: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        path: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        size: 468
 
       stderr:
         basename: stderr.txt
         class: File
         location: stderr.txt
         path: stderr.txt
-        size: 0
+        size: 15583
 
       stdout:
         basename: stdout.txt
