@@ -10,7 +10,7 @@ install:
   - pip install cwl-runner cwltest cwltool
   - docker build -t annotation:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
   - docker build -t assign:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
-  - docker build -t hmmscan:latest $TRAVIS_BUILD_DIR/CWL/Tools/HMMScan/
+  - docker pull mgnify/hmmscan:latest
   - docker build -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
   - docker build -t mapping:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
   - docker build -t cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/
