@@ -10,7 +10,7 @@ requirements:
   InlineJavascriptRequirement: {}
 
 baseCommand: ['Rscript', '/Make_viral_contig_map.R']
-arguments: ["-o", "Mapping_results"]
+arguments: ["-o", $(inputs.input_table.nameroot)_mapping_results]
 
 inputs:
   input_table:
@@ -29,7 +29,7 @@ outputs:
   folder:
     type: Directory
     outputBinding:
-      glob: Mapping_results
+      glob: $(inputs.input_table.nameroot)_mapping_results
 
   #mapping_results:
   #  type:

@@ -3,26 +3,206 @@
 - job: ../WorkFlow/pipeline.yml
   tool: ../WorkFlow/pipeline.cwl
   output:
-      output_table:
-        basename: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
-        checksum: sha1$983d886773bfa69af802b8f8992dc22ed4243de9
+      output_length_filtering:
+        basename: ERR575691_host_filtered_filt500bp.fasta
         class: File
-        location: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
-        path: High_confidence_putative_viral_contigs_prodigal_hmmscan.tbl
-        size: 147421
+        location: ERR575691_host_filtered_filt500bp.fasta
+        path: ERR575691_host_filtered_filt500bp.fasta
+        size: 2212936
 
-      stderr:
-        basename: stderr.txt
-        checksum: sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709
-        class: File
-        location: stderr.txt
-        path: stderr.txt
-        size: 0
-
-      stdout:
+      output_parse_stdout:
         basename: stdout.txt
-        checksum: sha1$882e93d0ee3d883c34ea5830b85a5e9021107930
         class: File
         location: stdout.txt
         path: stdout.txt
-        size: 589982
+        size: 392
+
+      output_prodigal:
+        - class: File
+          size: 109213
+          location: High_confidence_putative_viral_contigs_prodigal.faa
+          basename: High_confidence_putative_viral_contigs_prodigal.faa
+          path: High_confidence_putative_viral_contigs_prodigal.faa
+        - class: File
+          size: 1343
+          location: Low_confidence_putative_viral_contigs_prodigal.faa
+          basename: Low_confidence_putative_viral_contigs_prodigal.faa
+          path: Low_confidence_putative_viral_contigs_prodigal.faa
+        - class: File
+          size: 42325
+          location: Putative_prophages_prodigal.faa
+          basename: Putative_prophages_prodigal.faa
+          path: Putative_prophages_prodigal.faa
+
+      output_final_assign:
+        - class: File
+          size: 468
+          location: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+          basename: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+          path: High_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        - class: File
+          size: 128
+          location: Low_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+          basename: Low_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+          path: Low_confidence_putative_viral_contigs_prot_ann_table_tax_assign.tsv
+        - class: File
+          size: 230
+          location: Putative_prophages_prot_ann_table_tax_assign.tsv
+          basename: Putative_prophages_prot_ann_table_tax_assign.tsv
+          path: Putative_prophages_prot_ann_table_tax_assign.tsv
+
+      output_parse:
+        - class: File
+          size: 205451
+          location: High_confidence_putative_viral_contigs.fna
+          basename: High_confidence_putative_viral_contigs.fna
+          path: High_confidence_putative_viral_contigs.fna
+        - class: File
+          size: 2854
+          location: Low_confidence_putative_viral_contigs.fna
+          basename: Low_confidence_putative_viral_contigs.fna
+          path: Low_confidence_putative_viral_contigs.fna
+        - class: File
+          size: 83317
+          location: Putative_prophages.fna
+          basename: Putative_prophages.fna
+          path: Putative_prophages.fna
+
+      output_virsorter:
+        path: Predicted_viral_sequences
+        basename: Predicted_viral_sequences
+        class: Directory
+        location: Predicted_viral_sequences
+        listing:
+          - class: File
+            size: 42882
+            basename: VIRSorter_cat-1.fasta
+            path: VIRSorter_cat-1.fasta
+            location: VIRSorter_cat-1.fasta
+          - class: File
+            size: 159145
+            basename: VIRSorter_cat-2.fasta
+            path: VIRSorter_cat-2.fasta
+            location: VIRSorter_cat-2.fasta
+          - class: File
+            size: 0
+            basename: VIRSorter_cat-3.fasta
+            path: VIRSorter_cat-3.fasta
+            location: VIRSorter_cat-3.fasta
+          - class: File
+            size: 43597
+            basename: VIRSorter_prophages_cat-4.fasta
+            path: VIRSorter_prophages_cat-4.fasta
+            location: VIRSorter_prophages_cat-4.fasta
+          - class: File
+            size: 38377
+            basename: VIRSorter_prophages_cat-5.fasta
+            path: VIRSorter_prophages_cat-5.fasta
+            location: VIRSorter_prophages_cat-5.fasta
+          - class: File
+            size: 0
+            basename: VIRSorter_prophages_cat-6.fasta
+            path: VIRSorter_prophages_cat-6.fasta
+            location: VIRSorter_prophages_cat-6.fasta
+
+            # not used
+          - class: File
+            basename: VIRSorter_cat-1.gb
+            path: VIRSorter_cat-1.gb
+            location: VIRSorter_cat-1.gb
+          - class: File
+            basename: VIRSorter_cat-2.gb
+            path: VIRSorter_cat-2.gb
+            location: VIRSorter_cat-2.gb
+          - class: File
+            basename: VIRSorter_cat-3.gb
+            path: VIRSorter_cat-3.gb
+            location: VIRSorter_cat-3.gb
+          - class: File
+            basename: VIRSorter_prophages_cat-4.gb
+            path: VIRSorter_prophages_cat-4.gb
+            location: VIRSorter_prophages_cat-4.gb
+          - class: File
+            basename: VIRSorter_prophages_cat-5.gb
+            path: VIRSorter_prophages_cat-5.gb
+            location: VIRSorter_prophages_cat-5.gb
+          - class: File
+            path: VIRSorter_prophages_cat-6.gb
+            basename: VIRSorter_prophages_cat-6.gb
+            location: VIRSorter_prophages_cat-6.gb
+
+      output_parse_stderr:
+        class: File
+        size: 0
+        basename: stderr.txt
+        location: stderr.txt
+        path: stderr.txt
+
+      output_virfinder:
+        class: File
+        size: 37221
+        basename: VirFinder_output.tsv
+        location: VirFinder_output.tsv
+        path: VirFinder_output.tsv
+
+      output_final_mapping:
+        - path: High_confidence_putative_viral_contigs_prot_ann_table_mapping_results
+          basename: High_confidence_putative_viral_contigs_prot_ann_table_mapping_results
+          location: High_confidence_putative_viral_contigs_prot_ann_table_mapping_results
+          class: Directory
+          listing:
+            - class: File
+              size: 5968
+              location: NODE_11_length_37379_cov_2108.923079_11_H_1.pdf
+              basename: NODE_11_length_37379_cov_2108.923079_11_H_1.pdf
+              path: NODE_11_length_37379_cov_2108.923079_11_H_1.pdf
+            - class: File
+              size: 6611
+              location: NODE_10_length_41715_cov_27633.072156_11_H_2_circular.pdf
+              basename: NODE_10_length_41715_cov_27633.072156_11_H_2_circular.pdf
+              path: NODE_10_length_41715_cov_27633.072156_11_H_2_circular.pdf
+            - class: File
+              size: 4807
+              location: NODE_32_length_5441_cov_927.018381_11_H_1_circular.pdf
+              basename: NODE_32_length_5441_cov_927.018381_11_H_1_circular.pdf
+              path: NODE_32_length_5441_cov_927.018381_11_H_1_circular.pdf
+            - class: File
+              size: 8085
+              location: NODE_4_length_86514_cov_9.751212_01_2.pdf
+              basename: NODE_4_length_86514_cov_9.751212_01_2.pdf
+              path: NODE_4_length_86514_cov_9.751212_01_2.pdf
+            - class: File
+              size: 6019
+              location: NODE_14_length_30801_cov_940.226924_11_H_2.pdf
+              basename: NODE_14_length_30801_cov_940.226924_11_H_2.pdf
+              path: NODE_14_length_30801_cov_940.226924_11_H_2.pdf
+        - path: Low_confidence_putative_viral_contigs_prot_ann_table_mapping_results
+          location: Low_confidence_putative_viral_contigs_prot_ann_table_mapping_results
+          basename: Low_confidence_putative_viral_contigs_prot_ann_table_mapping_results
+          class: Directory
+          listing:
+            - class: File
+              size: 4656
+              basename: NODE_311_length_705_cov_2857.230769_10_H.pdf
+              location: NODE_311_length_705_cov_2857.230769_10_H.pdf
+              path: NODE_311_length_705_cov_2857.230769_10_H.pdf
+            - class: File
+              size: 4647
+              basename: NODE_82_length_2020_cov_811.839186_10_H.pdf
+              location: NODE_82_length_2020_cov_811.839186_10_H.pdf
+              path: NODE_82_length_2020_cov_811.839186_10_H.pdf
+        - path: Putative_prophages_prot_ann_table_mapping_results
+          location: Putative_prophages_prot_ann_table_mapping_results
+          basename: Putative_prophages_prot_ann_table_mapping_results
+          class: Directory
+          listing:
+            - class: File
+              size: 6112
+              location: NODE_5_length_65088_cov_10.862885_gene_1_gene_54-0-43522-cat_4.pdf
+              basename: NODE_5_length_65088_cov_10.862885_gene_1_gene_54-0-43522-cat_4.pdf
+              path: NODE_5_length_65088_cov_10.862885_gene_1_gene_54-0-43522-cat_4.pdf
+            - class: File
+              size: 6107
+              location: NODE_3_length_109381_cov_8.571337_gene_27_gene_74-28228-66525-cat_5.pdf
+              basename: NODE_3_length_109381_cov_8.571337_gene_27_gene_74-28228-66525-cat_5.pdf
+              path: NODE_3_length_109381_cov_8.571337_gene_27_gene_74-28228-66525-cat_5.pdf

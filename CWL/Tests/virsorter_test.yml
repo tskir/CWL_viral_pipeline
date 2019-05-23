@@ -42,27 +42,27 @@
             location: VIRSorter_prophages_cat-6.fasta
 
             # not used
-          - class: File?
+          - class: File
             basename: VIRSorter_cat-1.gb
             path: VIRSorter_cat-1.gb
             location: VIRSorter_cat-1.gb
-          - class: File?
+          - class: File
             basename: VIRSorter_cat-2.gb
             path: VIRSorter_cat-2.gb
             location: VIRSorter_cat-2.gb
-          - class: File?
+          - class: File
             basename: VIRSorter_cat-3.gb
             path: VIRSorter_cat-3.gb
             location: VIRSorter_cat-3.gb
-          - class: File?
+          - class: File
             basename: VIRSorter_prophages_cat-4.gb
             path: VIRSorter_prophages_cat-4.gb
             location: VIRSorter_prophages_cat-4.gb
-          - class: File?
+          - class: File
             basename: VIRSorter_prophages_cat-5.gb
             path: VIRSorter_prophages_cat-5.gb
             location: VIRSorter_prophages_cat-5.gb
-          - class: File?
+          - class: File
             path: VIRSorter_prophages_cat-6.gb
             basename: VIRSorter_prophages_cat-6.gb
             location: VIRSorter_prophages_cat-6.gb
