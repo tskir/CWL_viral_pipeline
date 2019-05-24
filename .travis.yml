@@ -8,8 +8,11 @@ python: 3.6
 
 install:
   - pip install cwl-runner cwltest cwltool
+  - wget https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
+  - tar -xvzf virsorter-data-v2.tar.gz
+  - mv virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
+  - docker pull simroux/virsorter:v1.0.5
   - docker build -t virfinder:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
-  - docker build -t simroux/virsorter:v1.0.5 $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
   - docker build -t annotation:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
   - docker build -t assign:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
   - docker pull mgnify/hmmscan:latest
