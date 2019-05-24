@@ -16,15 +16,15 @@ install:
   - docker pull simroux/virsorter:v1.0.5
   - docker pull mgnify/hmmscan:latest
 
-  - docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
-  - docker build -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
-  - docker build -t assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
-  - docker build -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
-  - docker build -t mapping_viral_predictions:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
-  - docker build -t cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/
-  - docker build -t prodigal_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/
-  - docker build -t ratio_evalue:latest $TRAVIS_BUILD_DIR/CWL/Tools/RatioEvalue/
-  - docker build -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
+  - docker build -t -q virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
+  - docker build -t -q annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
+  - docker build -t -q assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
+  - docker build -t -q cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
+  - docker build -t -q mapping_viral_predictions:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
+  - docker build -t -q cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/
+  - docker build -t -q prodigal_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/
+  - docker build -t -q ratio_evalue:latest $TRAVIS_BUILD_DIR/CWL/Tools/RatioEvalue/
+  - docker build -t -q sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
 
 script:
   - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 36000
