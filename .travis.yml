@@ -24,5 +24,4 @@ install:
   - docker build -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
 
 script:
-#- source $TRAVIS_BUILD_DIR/venv/bin/activate;
-  - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose
+  - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 36000
