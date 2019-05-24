@@ -25,3 +25,9 @@ install:
 
 script:
   - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 36000
+
+deploy:
+  provider: script
+  script: bash $TRAVIS_BUILD_DIR/docker_push.sh
+  on:
+    branch: master
