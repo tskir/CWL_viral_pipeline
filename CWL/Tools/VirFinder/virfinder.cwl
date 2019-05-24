@@ -8,7 +8,7 @@ label: "VirFinder is a method for finding viral contigs from de novo assemblies.
 
 requirements:
   DockerRequirement:
-    dockerPull: virfinder:latest
+    dockerPull: virfinder_viral:latest
   InlineJavascriptRequirement: {}
 
 baseCommand: [run_virfinder.Rscript]

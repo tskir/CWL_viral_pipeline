@@ -12,14 +12,14 @@ install:
   - tar -xvzf virsorter-data-v2.tar.gz
   - mv virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
   - docker pull simroux/virsorter:v1.0.5
-  - docker build -t virfinder:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
-  - docker build -t annotation:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
-  - docker build -t assign:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
+  - docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
+  - docker build -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
+  - docker build -t assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
   - docker pull mgnify/hmmscan:latest
   - docker build -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
-  - docker build -t mapping:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
+  - docker build -t mapping_viral_predictions:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
   - docker build -t cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/
-  - docker build -t prodigal:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/
+  - docker build -t prodigal_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/
   - docker build -t ratio_evalue:latest $TRAVIS_BUILD_DIR/CWL/Tools/RatioEvalue/
   - docker build -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
 

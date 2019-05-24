@@ -7,7 +7,7 @@ label: "Protein-coding gene prediction for prokaryotic genomes"
 
 requirements:
   DockerRequirement:
-    dockerPull: prodigal:latest
+    dockerPull: prodigal_viral:latest
   InlineJavascriptRequirement: {}
 
 baseCommand: [prodigal]

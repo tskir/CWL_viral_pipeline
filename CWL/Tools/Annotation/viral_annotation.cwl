@@ -6,7 +6,7 @@ label: "Viral contig annotation"
 
 requirements:
   DockerRequirement:
-    dockerPull: annotation:latest
+    dockerPull: annotation_viral_contigs:latest
   InlineJavascriptRequirement: {}
 
 baseCommand: ['python', '/viral_contigs_annotation.py']

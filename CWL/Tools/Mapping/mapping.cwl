@@ -6,7 +6,7 @@ label: "Viral contig mapping"
 
 requirements:
   DockerRequirement:
-    dockerPull: mapping:latest
+    dockerPull: mapping_viral_predictions:latest
   InlineJavascriptRequirement: {}
 
 baseCommand: ['Rscript', '/Make_viral_contig_map.R']
