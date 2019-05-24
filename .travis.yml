@@ -8,6 +8,8 @@ python: 3.6
 
 install:
   - pip install cwl-runner cwltest cwltool
+  - docker build -t virfinder:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
+  - docker build -t simroux/virsorter:v1.0.5 $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
   - docker build -t annotation:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
   - docker build -t assign:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
   - docker pull mgnify/hmmscan:latest
@@ -17,8 +19,6 @@ install:
   - docker build -t prodigal:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/
   - docker build -t ratio_evalue:latest $TRAVIS_BUILD_DIR/CWL/Tools/RatioEvalue/
   - docker build -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
-  - docker build -t virfinder:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
-  - docker build -t simroux/virsorter:v1.0.5 $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
 
 script:
   - source $TRAVIS_BUILD_DIR/venv/bin/activate;

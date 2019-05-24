@@ -20,7 +20,7 @@ RUN mv /VirFinder_1.1.tar.gz /usr/local/virfinder/ && tar -zxvf /usr/local/virfi
 
 RUN R CMD INSTALL /usr/local/virfinder/VirFinder
 
-ADD run_virfinder.Rscript /usr/local/bin/
+ADD /run_virfinder.Rscript /usr/local/bin/
 
 #RUN wget https://github.com/FredHutch/docker-virfinder/raw/master/data/LiverCirrhosis_2657Contigs.fasta
 #ADD LiverCirrhosis_2657Contigs.fasta /usr/local/virfinder/
