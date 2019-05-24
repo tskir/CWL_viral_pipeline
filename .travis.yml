@@ -8,14 +8,17 @@ python: 3.6
 
 install:
   - pip install cwl-runner cwltest cwltool
-  - wget https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
-  - tar -xvzf virsorter-data-v2.tar.gz
-  - mv virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
+  - mkdir $TRAVIS_BUILD_DIR/virsorter-data-cache
+  - wget -nc -P $TRAVIS_BUILD_DIR/virsorter-data-cache/ https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
+  - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
+  - mv $TRAVIS_BUILD_DIR/virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
+
   - docker pull simroux/virsorter:v1.0.5
+  - docker pull mgnify/hmmscan:latest
+  
   - docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
   - docker build -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
   - docker build -t assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
-  - docker pull mgnify/hmmscan:latest
   - docker build -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
   - docker build -t mapping_viral_predictions:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
   - docker build -t cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/
@@ -26,6 +29,9 @@ install:
 script:
   - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 36000
 
+cache:
+  directories:
+  -
 deploy:
   provider: script
   script: bash $TRAVIS_BUILD_DIR/docker_push.sh
