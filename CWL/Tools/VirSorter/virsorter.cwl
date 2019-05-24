@@ -24,7 +24,7 @@ inputs:
     type: Directory?
     default:
       class: Directory
-      path:  ../Tools/VirSorter/virsorter-data
+      path:  CWL/Tools/VirSorter/virsorter-data
       listing: []
       basename: virsorter-data
     inputBinding:
