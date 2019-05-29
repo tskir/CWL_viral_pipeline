@@ -16,7 +16,7 @@ install:
   - docker pull simroux/virsorter:v1.0.5
   - docker pull mgnify/hmmscan:latest
 
-  - docker build -q -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
+  - docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
   - docker build -q -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
   - docker build -q -t assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
   - docker build -q -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
@@ -29,9 +29,23 @@ install:
 script:
   - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 36000
 
+
+# Caching from https://github.com/travis-ci/travis-ci/issues/5358#issuecomment-248915326
+before_cache:
+  # Save tagged docker images
+  - >
+    mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}'
+    | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+
+before_install:
+  # Load cached docker images
+  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+
 cache:
+  bundler: true
   directories:
-  -
+    - $HOME/docker
+
 deploy:
   provider: script
   script: bash $TRAVIS_BUILD_DIR/docker_push.sh

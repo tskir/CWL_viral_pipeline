@@ -2,8 +2,8 @@ FROM ubuntu:16.04
 MAINTAINER sminot@fredhutch.org
 
 # Install prerequisites
-RUN apt update && \
-    apt-get install -y r-base python3 python3-pip bats wget
+RUN apt update -qq && \
+    apt-get -qq install -y r-base python3 python3-pip bats wget
 
 # Python dependencies
 RUN pip3 install bucket-command-wrapper==0.3.0
