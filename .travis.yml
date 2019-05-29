@@ -8,7 +8,7 @@ python: 3.6
 
 install:
   - pip install -q cwl-runner cwltest cwltool
-  - mkdir $TRAVIS_BUILD_DIR/virsorter-data-cache
+  - mkdir -p $TRAVIS_BUILD_DIR/virsorter-data-cache
   - wget -nc -q -P $TRAVIS_BUILD_DIR/virsorter-data-cache/ https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
   - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
   - mv $TRAVIS_BUILD_DIR/virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
