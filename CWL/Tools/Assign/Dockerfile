@@ -2,9 +2,7 @@ FROM python:3
 
 LABEL maintainer="Ekaterina Sakharova <kates@ebi.ac.uk>"
 
-RUN pip install pandas
-RUN pip install biopython
-RUN pip install ete3
+RUN pip install -q pandas biopython ete3
 RUN python -c 'from ete3 import NCBITaxa; NCBITaxa()'
 ##############################################################
 # Dockerfile Version:   18.06.0-ce

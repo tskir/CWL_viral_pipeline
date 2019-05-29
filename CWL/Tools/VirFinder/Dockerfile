@@ -6,7 +6,7 @@ RUN apt update -qq && \
     apt-get -qq install -y r-base python3 python3-pip bats wget
 
 # Python dependencies
-RUN pip3 install bucket-command-wrapper==0.3.0
+RUN pip3 install -q bucket-command-wrapper==0.3.0
 
 # R dependencies
 RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile && \

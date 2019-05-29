@@ -7,7 +7,7 @@ language: python
 python: 3.6
 
 install:
-  - pip install cwl-runner cwltest cwltool
+  - pip install -q cwl-runner cwltest cwltool
   - mkdir $TRAVIS_BUILD_DIR/virsorter-data-cache
   - wget -nc -q -P $TRAVIS_BUILD_DIR/virsorter-data-cache/ https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
   - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
@@ -45,6 +45,7 @@ cache:
   bundler: true
   directories:
     - $HOME/docker
+    - $TRAVIS_BUILD_DIR/virsorter-data-cache/
 
 deploy:
   provider: script
