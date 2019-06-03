@@ -27,7 +27,7 @@ install:
   - docker build -q -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
 
 script:
-  - cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 3600
+  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml  --verbose --timeout 3600
 
 
 # Caching from https://github.com/travis-ci/travis-ci/issues/5358#issuecomment-248915326
