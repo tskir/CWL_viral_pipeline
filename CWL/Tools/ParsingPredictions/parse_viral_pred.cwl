@@ -27,7 +27,7 @@ inputs:
     type: Directory?
     default:
       class: Directory
-      path:  CWL/WorkFlow/
+      path:  ../../WorkFlow/
       listing: []
     inputBinding:
       separate: true
