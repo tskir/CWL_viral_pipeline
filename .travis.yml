@@ -10,7 +10,7 @@ install:
   - pip install -q cwl-runner cwltest cwltool
   - sudo apt-get install aria2
   - mkdir -p $TRAVIS_BUILD_DIR/virsorter-data-cache
-  - time aria2c -x 8 -s 8 --dir=$TRAVIS_BUILD_DIR/virsorter-data-cache/ https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
+  - time wget -nc -q -P $TRAVIS_BUILD_DIR/virsorter-data-cache/ https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
   - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
   - mv $TRAVIS_BUILD_DIR/virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
 
@@ -28,7 +28,7 @@ install:
   - docker build -q -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
 
 script:
-  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml --timeout 18000
+  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml --timeout 7200 --tool cwltool
 
 
 # Caching from https://github.com/travis-ci/travis-ci/issues/5358#issuecomment-248915326
