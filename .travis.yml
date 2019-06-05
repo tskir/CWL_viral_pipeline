@@ -8,7 +8,7 @@ python: 3.6
 
 install:
   - pip install -q cwl-runner cwltest cwltool
-  - apt-get install aria2
+  - sudo apt-get install aria2
   - mkdir -p $TRAVIS_BUILD_DIR/virsorter-data-cache
   - time aria2c -x 8 -s 8 --dir=$TRAVIS_BUILD_DIR/virsorter-data-cache/ https://zenodo.org/record/1168727/files/virsorter-data-v2.tar.gz
   - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
