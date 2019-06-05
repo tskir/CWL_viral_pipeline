@@ -14,8 +14,8 @@ install:
   - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
   - mv $TRAVIS_BUILD_DIR/virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
 
-  - docker pull simroux/virsorter:v1.0.5 mgnify/hmmscan:latest
-  #- docker pull
+  - docker pull simroux/virsorter:v1.0.5
+  - docker pull mgnify/hmmscan:latest
 
   - docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
   - docker build -q -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
