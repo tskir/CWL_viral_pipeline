@@ -31,7 +31,10 @@ install:
     ; wait
 
 script:
-  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml --timeout 7200 --tool 'cwltool --parallel'
+  - echo -e '#!/usr/bin/bash\ncwltool --parallel "$@"' > pcwltool
+  - chmod a+x pcwltool
+  - export PATH=$PATH:$PWD
+  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml --timeout 7200 --tool 'pcwltool'
 
 
 # Caching from https://github.com/travis-ci/travis-ci/issues/5358#issuecomment-248915326
