@@ -16,21 +16,22 @@ install:
   - tar -xvzf $TRAVIS_BUILD_DIR/virsorter-data-cache/virsorter-data-v2.tar.gz
   - mv $TRAVIS_BUILD_DIR/virsorter-data $TRAVIS_BUILD_DIR/CWL/Tools/VirSorter/
 
-  - docker pull simroux/virsorter:v1.0.5
-  - docker pull mgnify/hmmscan:latest
+  - docker pull simroux/virsorter:v1.0.5 & docker pull mgnify/hmmscan:latest; wait
 
-  - docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/
-  - docker build -q -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/
-  - docker build -q -t assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/
-  - docker build -q -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/
-  - docker build -q -t mapping_viral_predictions:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/
-  - docker build -q -t cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/
-  - docker build -q -t prodigal_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/
-  - docker build -q -t ratio_evalue:latest $TRAVIS_BUILD_DIR/CWL/Tools/RatioEvalue/
-  - docker build -q -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
+  - >
+    docker build -t virfinder_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/VirFinder/ &
+    docker build -q -t annotation_viral_contigs:latest $TRAVIS_BUILD_DIR/CWL/Tools/Annotation/ &
+    docker build -q -t assign_taxonomy:latest $TRAVIS_BUILD_DIR/CWL/Tools/Assign/ &
+    docker build -q -t cwl_length_filter_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/LengthFiltering/ &
+    docker build -q -t mapping_viral_predictions:latest $TRAVIS_BUILD_DIR/CWL/Tools/Mapping/ &
+    docker build -q -t cwl_parse_pred:latest $TRAVIS_BUILD_DIR/CWL/Tools/ParsingPredictions/ &
+    docker build -q -t prodigal_viral:latest $TRAVIS_BUILD_DIR/CWL/Tools/Prodigal/ &
+    docker build -q -t ratio_evalue:latest $TRAVIS_BUILD_DIR/CWL/Tools/RatioEvalue/ &
+    docker build -q -t sed_docker:latest $TRAVIS_BUILD_DIR/CWL/Tools/Sed/
+    ; wait
 
 script:
-  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml --timeout 7200 --tool cwltool
+  - travis_wait 60 cwltest --test $TRAVIS_BUILD_DIR/CWL/Tests/pipeline_test.yml --timeout 7200 --tool 'cwltool --parallel'
 
 
 # Caching from https://github.com/travis-ci/travis-ci/issues/5358#issuecomment-248915326
