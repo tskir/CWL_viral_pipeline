@@ -20,8 +20,11 @@ def contig_tax(annot_df, min_prot, prop_annot, tax_thres):
 	df_rows = []
 
 	def get_tax_rank(label):
-		tax_id = ncbi.get_name_translator([label])[label]
-		tax_rank = ncbi.get_rank(tax_id)[tax_id[0]]
+		try:
+			tax_id = ncbi.get_name_translator([label])[label]
+			tax_rank = ncbi.get_rank(tax_id)[tax_id[0]]
+		except:
+			tax_rank = ""
 		return tax_rank
 
 	for contig in contig_list:
@@ -67,18 +70,23 @@ def contig_tax(annot_df, min_prot, prop_annot, tax_thres):
 							else:
 								tax_hits[column["Label"]] += 1
 						else:
-							name2taxid = ncbi.get_name_translator([column["Label"]])
-							label_lineage = ncbi.get_lineage(name2taxid[column["Label"]][0])
-							lineage_names = ncbi.get_taxid_translator(label_lineage)
-							lineage_ranks = ncbi.get_rank(label_lineage)
-							if item in lineage_ranks.values():
-								for x,y in lineage_ranks.items():
-									if y == item:
-										if lineage_names[x] not in tax_hits.keys():
-											tax_hits[lineage_names[x]] = 1
-										else:
-											tax_hits[lineage_names[x]] += 1
-										break
+							try:
+								name2taxid = ncbi.get_name_translator([column["Label"]])
+								label_lineage = ncbi.get_lineage(name2taxid[column["Label"]][0])
+								lineage_names = ncbi.get_taxid_translator(label_lineage)
+								lineage_ranks = ncbi.get_rank(label_lineage)
+								if item in lineage_ranks.values():
+									for x,y in lineage_ranks.items():
+										if y == item:
+											if lineage_names[x] not in tax_hits.keys():
+												tax_hits[lineage_names[x]] = 1
+											else:
+												tax_hits[lineage_names[x]] += 1
+											break
+											
+							except:
+								continue
+								
 					if len(tax_hits) < 1:
 						assigned_taxa.append("")
 					else:
